@@ -1,0 +1,37 @@
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Секреты и конфиги
+.env
+*.key
+*.pem
+secrets.py
+config_secret.py
+token.txt
+
+# Временные файлы
+temp/
+tmp/
+*.log
+logs/
+
+# Аудио файлы
+*.mp3
+*.wav
+*.ogg
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Виртуальное окружение
+venv/
+.env/
+.venv/
