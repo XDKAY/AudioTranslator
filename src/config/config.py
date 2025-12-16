@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+__all__ = ('load_config',)
+
+
 @dataclass
 class Bot:
     token: str
