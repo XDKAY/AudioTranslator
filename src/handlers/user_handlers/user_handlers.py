@@ -2,7 +2,9 @@ from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import default_state
 
+from src.services.bot import bot
 from src.states import StateGetVoiceMessage
 from src.utils.logger import logger
 
@@ -25,6 +27,11 @@ async def handler_message_get_voice(message: Message, state: FSMContext):
 async def get_voice(message: Message, state: FSMContext):
     file_id = message.voice.file_id
     log.info(f'Получено голосовое сообщение с id {file_id}')
+
+
+@router.message(Command('exit'), ~StateFilter(default_state))
+async def exit_from_state(message: Message, state: FSMContext):
+    await message.answer('Приходите еще!')
     await state.clear()
 
 
