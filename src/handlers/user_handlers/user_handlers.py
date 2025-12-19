@@ -1,3 +1,5 @@
+import hashlib
+
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.filters import Command, StateFilter
@@ -26,7 +28,12 @@ async def handler_message_get_voice(message: Message, state: FSMContext):
 @router.message(StateFilter(StateGetVoiceMessage.get_voice_message), F.voice)
 async def get_voice(message: Message, state: FSMContext):
     file_id = message.voice.file_id
-    log.info(f'Получено голосовое сообщение с id {file_id}')
+
+    file = await bot.get_file(file_id)
+    file_path = file.file_path
+    await bot.download_file(file_path, f'src/data/voice/{file_id}.mp3')
+
+    log.info(f'Получено голосовое сообщение')
 
 
 @router.message(Command('exit'), ~StateFilter(default_state))
