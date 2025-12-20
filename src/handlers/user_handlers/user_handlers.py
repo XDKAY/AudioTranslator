@@ -31,7 +31,8 @@ async def get_voice(message: Message, state: FSMContext):
 
     file = await bot.get_file(file_id)
     file_path = file.file_path
-    await bot.download_file(file_path, f'src/data/voice/{file_id}.mp3')
+    path =  f'src/data/voice/{file_id}.mp3'
+    await bot.download_file(file_path, path)
 
     log.info(f'Получено голосовое сообщение')
 
